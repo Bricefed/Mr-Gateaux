@@ -1,0 +1,34 @@
+/*
+font-family: 'Courier Prime', monospace;
+font-family: 'Lato', sans-serif;
+*/
+
+footer{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    background-color: #C16468;
+}
+footer > div{
+    width: 100%;
+}
+footer > div > p, footer > div > a{
+    font-family: 'Lato', sans-serif;
+    color: white;
+    text-decoration: none;
+    opacity: .8;
+    -webkit-transition: opacity .3s;
+    -o-transition: opacity .3s;
+    transition: opacity .3s;
+}
+footer > div > a:hover{
+    color: white;
+    text-decoration: none;
+    opacity: 1;
+}

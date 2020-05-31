@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {# GOOGLE ANALYTIC #}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-167636468-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-167636468-1');
+        </script>
+
+        {# BOOTSRAP #}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+        {# LIEN DE BASE #}
+        <meta charset="UTF-8">
+        <title>{% block title %}- MR-GATEAUX -{% endblock %}</title>
+        <link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.min.css">
+        <link rel="stylesheet" href="{{asset('css/mediaQue.css')}}">
+        <link rel="stylesheet" href="{{asset('css/home.css')}}">
+        <link rel="stylesheet" href="{{asset('css/toutVoir.css')}}">
+        <link rel="stylesheet" href="{{asset('css/paginate.css')}}">
+        <link rel="stylesheet" href="{{asset('css/login.css')}}">
+        <link rel="stylesheet" href="{{asset('css/inscription.css')}}">
+        <link rel="stylesheet" href="{{asset('css/categoriesAndGouts.css')}}">
+        <link rel="stylesheet" href="{{asset('css/single.css')}}">
+        <link rel="stylesheet" href="{{asset('css/comment.css')}}">
+        <link rel="stylesheet" href="{{asset('css/footer.css')}}">
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        
+        {# FAVICONE #}
+        <link rel="apple-touch-icon" sizes="180x180" href="{{asset('imgs/favicon_io/apple-touch-icon.png')}}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{asset('imgs/favicon_io/favicon-32x32.png')}}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{asset('imgs/favicon_io/favicon-16x16.png')}}">
+        <link rel="manifest" href="/site.webmanifest">
+        {% block stylesheets %}{% endblock %}
+
+    </head>
+    
+    
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-danger d-flex justify-content-between">
+                <a class="navbar-brand" href="{{path('home')}}"><img class="mr-3" src="{{asset('imgs/logos/logo.svg')}}" width="50px" alt="Logo"> MR-GATEAUX</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            <div class="navbar-collapse collapse" id="navbarColor01">
+                <ul class="navbar-nav text-center">
+                    <li class="nav-item">
+                        <a class="nav-link {% if nav_activ is defined and nav_activ == 'home' %}active{% endif %}" href="{{path('home')}}">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if nav_activ is defined and nav_activ == 'toutVoir' %}active{% endif %}" href="{{path('tout_voir')}}">Tout voir</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if nav_activ is defined and nav_activ == 'categories' %}active{% endif %}" href="{{path('categorie')}}">Catégories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if nav_activ is defined and nav_activ == 'gouts' %}active{% endif %}" href="{{path('gout')}}">Goûts</a>
+                    </li>
+                    {% if not app.user %}    
+                        <li class="nav-item">
+                            <a class="nav-link {% if nav_activ is defined and nav_activ == 'inscription' %}active{% endif %}" href="{{path('inscription')}}">S'inscrire <i class="fa fa-user-plus" aria-hidden="true"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if nav_activ is defined and nav_activ == 'login' %}active{% endif %}" href="{{path('login')}}">Se connecter <i class="fa fa-user" aria-hidden="true"></i></a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{path('logout')}}">Se déconnecter <i class="fa fa-times-circle" aria-hidden="true"></i></a>
+                        </li>
+                    {% endif %}
+                    {% if is_granted("ROLE_ADMIN") %}
+                        <li>
+                            <a class="nav-link" href="/admin">Admin</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+        {% if footer_activ is defined and footer_activ == 'yes' %}
+            <footer class="text-center p-4 mt-5">
+                <div>
+                    <p class="mt-3">Tous droits réservés à mr-gateaux.com</p>
+                </div>
+                <div class="text-center">
+                    <img src="{{asset('imgs/logos/logo.svg')}}" width="75px" alt="logo">
+                </div>
+                <div>
+                    <a href="{{path('mention')}}">Mentions légales</a>
+                </div>
+            </footer>
+        {% endif %}
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    </body>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</html>

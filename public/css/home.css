@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css?family=Courier+Prime|Lato&display=swap');
+/*
+font-family: 'Courier Prime', monospace;
+font-family: 'Lato', sans-serif;
+*/
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+}
+h1{
+    text-transform: uppercase;
+    font-family: 'Lato', sans-serif;
+    font-size: 2em;
+    color: black;
+}
+h2{
+    text-transform: uppercase;
+    font-family: 'Courier Prime', monospace;
+    color: #AF2E2E;
+}
+.bandoConex{
+    background-color: #D17E81;
+    margin-top: 50px;
+    padding: 30px;
+}
+
+h3{
+    background-color: #AF4B4F;
+    color: white;
+    font-family: 'Courier Prime', monospace;
+    text-transform: uppercase;
+    
+}
+
+
+
+
+.cardRadius{
+    border: none;
+}
+.titreRecette{
+    background-color: #ACB3BE;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    font-family: 'Courier Prime', monospace;
+    color: white;
+    text-transform: uppercase;
+    font-size: 1.3em;
+    padding: 15px;
+}
+.btn-perso{
+    text-transform: uppercase;
+    font-size: .7em;
+    border-radius: 50px;
+    border: 1px solid #8390A2;
+    background-color: #8390A2;
+    color: white;
+    white-space: nowrap;
+    -webkit-transition: background-color .3s, color .3s;
+    -o-transition: background-color .3s, color .3s;
+    transition: background-color .3s, color .3s;
+}
+.btn-perso:hover{
+    background-color: white;
+    color: #8390A2;
+}
+.diffText{
+    color: #8390A2;
+    font-size: 1em;
+}
+
+.cardFooter{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    background-color: #DDDDDD; 
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    font-size: 13px; 
+    color: #656565;
+}
+.dateFiche{
+    color: #AF4B4F;
+}
+
+.btn-danger2{
+    background-color: white;
+    color: #AF4B4F;
+    border: 1px solid #AF4B4F;
+    text-transform: uppercase;
+    font-size: 20px;
+    padding: 10px 25px;
+    -webkit-transition: background-color .5s, color .3s;
+    -o-transition: background-color .5s, color .3s;
+    transition: background-color .5s, color .3s;
+}
+.btn-danger2:hover{
+    background-color: #AF4B4F;
+    color: white;
+}
+
+.userNoActiv{
+    width: 80%;
+    margin: 250px auto;
+}
+.userNoActiv > h3{
+    padding: 50px 100px;
+    border-radius: 20px;
+    text-align: center;
+}

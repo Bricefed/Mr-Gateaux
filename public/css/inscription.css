@@ -1,0 +1,30 @@
+/*
+font-family: 'Courier Prime', monospace;
+font-family: 'Lato', sans-serif;
+*/
+
+.loginDroite > h1{
+    font-family: 'Courier Prime', monospace;
+    color: #606060;
+}
+.displaySimple2{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+
+}
+.displaySimple2 > p{
+    font-size: .7em;
+}
+.displaySimple2 > div > button{
+    text-transform: uppercase;
+    background-color: #8ECC83;
+    border: none;
+    color: white;
+}

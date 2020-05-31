@@ -1,0 +1,89 @@
+/*
+font-family: 'Courier Prime', monospace;
+font-family: 'Lato', sans-serif;
+*/
+
+h5{
+    width: 100%;
+    color: #AF4B4F;
+    border-bottom: 2px solid #AF4B4F;
+    text-transform: uppercase;
+}
+
+.post-it{
+    background-color: #EFD392;
+    padding: 20px;
+    margin: 100px;
+    -webkit-box-shadow: 0 10px 10px 2px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 10px 2px rgba(0,0,0,0.3);
+    -webkit-transform: rotate(5.5deg);
+        -ms-transform: rotate(5.5deg);
+            transform: rotate(5.5deg);
+}
+.post-it > h4{
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    font-size: 1.3em;
+    color: #707070;
+    opacity: .8;
+    text-transform: uppercase;
+    text-align: center;
+}
+.post-it > p{
+    font-size: .9em;
+    color: #7C7157;
+    text-align: center;
+}
+.post-it > h6{
+    font-size: .8em;
+    color: #8995A6;
+    text-align: center;
+}
+.post-it > div{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    font-size: .7em;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+}
+.post-it > div > img{
+    width: 15px;
+}
+.post-it > div > span > span{
+    font-weight: bold;
+    color: #AF4B4F;
+}
+
+.p1{
+    color: #AF4B4F;
+    text-transform: uppercase;
+    font-family: 'Lato', sans-serif;
+}
+.p2{
+    color: #5A5A5A;
+    font-family: 'Lato', sans-serif;
+}
+.ckEdit{
+    font-family: 'Lato', sans-serif;
+}
+
+.jumboRed2{
+    font-size: 25px;
+    line-height: 50px;
+    color: white;
+    background-color: #AF4B4F;
+}
+.jumboRed2 > div > p{
+    color: white;
+    font-family: 'Courier Prime', monospace;
+    text-decoration: none;
+    margin: 10px;
+    text-transform: uppercase;
+    text-align: center;
+}
+

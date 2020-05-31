@@ -1,0 +1,55 @@
+/*
+font-family: 'Courier Prime', monospace;
+font-family: 'Lato', sans-serif;
+*/
+
+.hr{
+    height: 1px;
+    width: 100%;
+    background-color: #707070;
+}
+.navigation > div{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.navigation > div > .current{
+    color: white;
+    background-color: #C1272D;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+.navigation > div > .previous > a,
+.navigation > div > .page > a,
+.navigation > div > .next > a
+{
+    color: #2C3E50;
+    border: 2px solid white;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 10px;
+    -webkit-transition: border .3s;
+    -o-transition: border .3s;
+    transition: border .3s;
+}
+
+.navigation > div > .previous > a:hover,
+.navigation > div > .page > a:hover,
+.navigation > div > .next > a:hover{
+    border: 2px solid #C1272D;
+    text-decoration: none;
+}
+
+.navigation > div > .last > a,
+.navigation > div > .first > a{
+    display: none;
+}

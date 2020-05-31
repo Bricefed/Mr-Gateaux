@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau mot de passe - MR-GATEAU -{% endblock %}
+
+{% block body %}
+
+    {#
+    {% for alert in app.flashes('danger') %}
+        <div class="alert alert-danger mt-5">
+            {{alert}}
+        </div>
+    {% endfor %} 
+    #}
+
+    <div class="blockLogin">
+        <div class="loginGauche">
+            <p class="titreText">Création d'un nouveau mot de passe</p>
+        </div>
+        <div class="loginDroite">
+            <h1 class="text-center mb-5">Nouveau mot de passe</h1>
+                <form method="post" class="text-center">
+                    <input type="password" name="password" id="pass">
+                    <input type="hidden" name="token" value="{{token}}">
+                    <button>Valider</button>
+                </form>
+        </div>
+    </div>
+
+{% endblock %}

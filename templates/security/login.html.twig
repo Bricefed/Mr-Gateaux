@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion - MR-GATEAU -{% endblock %}
+
+{% block body %}
+<div class="blockLogin">
+    <div class="loginGauche">
+        <p class="titreText">Connecter-vous !</p>
+        <p>Vous n’avez pas de compte ?</p>
+        <a href="{{path('inscription')}}" class="btn">S'inscrire</a>
+    </div>
+    <div class="loginDroite">
+    {% for alert in app.flashes('message') %}
+        <div class="alert alert-success">
+            {{alert}}
+        </div>
+    {% endfor %}
+    {% for alert in app.flashes('newEmail') %}
+        <div class="alert alert-success">
+            {{alert}}
+        </div>
+    {% endfor %}
+    {% for alert in app.flashes('compteAActiv') %}
+        <div class="alert alert-success">
+            {{alert}}
+        </div>
+    {% endfor %}
+    {% for alert in app.flashes('compteActiv') %}
+        <div class="alert alert-success">
+            {{alert}}
+        </div>
+    {% endfor %}
+
+        <form method="post">
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+
+            <h1 class="text-center mt-4 mb-5">Connexion</h1>
+            <label for="inputEmail">Email* :</label>
+                <input type="email" placeholder="votre@email.com" value="{{ last_username }}" name="email" id="inputEmail" class="form-control mb-5" required autofocus>
+            <label for="inputPassword">Mot de passe* :</label>
+            <input type="password" name="password" id="inputPassword" class="form-control mb-3" required>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+            <a href="{{path('app_forgoten_password')}}" class="mdpForgetten">Mot de passe oublié ?</a>
+
+            <div class="displaySimple mt-3">
+                <p class="font-7">*Tous les champs sont obligatoires</p>
+                <button class="btn" type="submit">
+                    Se connecter
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

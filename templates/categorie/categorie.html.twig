@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégorie / {{categories.nom}} - MR-GATEAUX -{% endblock %}
+
+{% block body %}
+{% if not app.user or app.user.getActivationToken() == null %}
+    <div class="jumboPerso text-center p-5">
+        <h2>Catégories</h2>
+    </div>
+    <div class="jumboRed">
+        <div>
+            <a href="{{path('categorie')}}">Catégories</a> /
+            <a href="{{path('categories', {'id':categories.id})}}">{{categories.nom}}</a>
+        </div>
+    </div>
+
+        <div class="container mt-5">
+            <div class="row flex">
+                {% for recette in categories.recette %} 
+                    <div class="col-sm-12 col-md-6 col-lg-4 m-auto">
+                        <div class="card cardRadius mb-5" style="background-color: #F4F4F4;">
+                            <h3 class="text-center titreRecette">{{recette.nom}}</h3>
+                            <div style="display: flex;" class="px-3">
+                                <div>
+                                    {% for gout in recette.gouts %}
+                                        <a href="{{path('gouts', {'id': gout.id})}}" class="btn btn-perso mt-1 mb-3">{{gout.nom}}</a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <a href="{{path('single_page', {'id': recette.id})}}">
+                                <img src="{{asset('imgs/photos/' ~ recette.img)}}" alt="{{recette.nom}}" width="100%" class="img-pres img-fluid mb-3">
+                            </a>
+                            <div class="px-3">
+                                {% for categorie in recette.categories %}
+                                    <a href="{{path('categories', {'id': categorie.id})}}" class="btn btn-perso mb-1">{{categorie.nom}}</a>
+                                {% endfor %}
+                            </div>
+                            <div class="diffText p-2 text-right">
+                                    {{recette.difficulte.level}}
+                                    <img src="{{asset('imgs/illus/diff1.svg')}}" class="mx-1" style="height: 14px;" alt="Difficulté">
+                                </div>
+                            <div style="" class="px-3 py-1 cardFooter">
+                                <img src="{{asset('imgs/logos/tampon.svg')}}" style="width: 15px;" alt="logo">
+                                <div class="p-1">Publiée le : <span class="dateFiche">{{ recette.createdAt | date('d/m/Y') }}</span></div>
+                            </div>
+                        </div>
+                    </div>    
+                {% endfor %} 
+            </div>
+        </div>
+{% else %}
+    <div class="userNoActiv">
+        <h3 class="mt-5 mb-4">Votre compte n'est pas activé ! Allez voir dans votre boite mail pour avoir le lien d'activation du compte</h2>
+    </div>
+{% endif %}
+{% endblock %}

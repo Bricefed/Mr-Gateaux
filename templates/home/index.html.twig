@@ -1,0 +1,76 @@
+
+    {% extends 'base.html.twig' %}
+
+    {% block title %}Accueil - MR-GATEAUX - {% endblock %}
+
+    {% block body %}
+    {% if not app.user or app.user.getActivationToken() == null %}
+
+        <div class="text-center mt-5 container">
+            <img src="{{asset('imgs/logos/logo.svg')}}" width="200px" alt="logo">
+            <h1>Mr-gateaux</h1>
+            
+            {% if not app.user %}
+                <h2 class="mt-5 mb-4">Bienvenue !</h2>
+            {% else %}
+                <h2 class="mt-5 mb-4">Merci de votre confiance :)</h2>
+            {% endif %}
+            <p class="mb-5">Je vous présente mon cahier de recette, entièrement gratuit et disponible pour tout le monde ! Des photos uniques avec une vue à 360°</p>
+        </div>
+
+        {% if not app.user %}
+            <div class="text-center bandoConex container-fluid">
+                <p class="text-light mb-3">Pour avoir accès à l’espace commentaire il faut d’abord avoir un compte.</p>
+                <div>
+                    <a href="{{path('inscription')}}"><span class="btn btn-light text-success mx-2">s'inscrire</span></a>
+                    <a href="{{path('login')}}"><span class="btn btn-light text-primary mx-2">connexion</span></a>
+                </div>
+            </div>
+        {% endif %}
+
+        <h3 class="text-center mt-5 p-4">Les dernières recettes ajoutées</h3>
+
+            <div class="container mt-5">
+                <div class="row flex">
+                    {% for recette in recettes %} 
+                        <div class="col-sm-12 col-md-6 col-lg-4 m-auto">
+                            <div class="card cardRadius mb-5" style="background-color: #F4F4F4;">
+                                <h3 class="text-center titreRecette">{{recette.nom}}</h3>
+                                <div style="display: flex;" class="px-3">
+                                    <div>
+                                        {% for gout in recette.gouts %}
+                                            <a href="{{path('gouts', {'id': gout.id})}}" class="btn btn-perso mt-1 mb-3">{{gout.nom}}</a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <a href="{{path('single_page', {'id': recette.id})}}">
+                                    <img src="{{asset('imgs/photos/' ~ recette.img)}}" alt="{{recette.nom}}" width="100%" class="img-pres img-fluid mb-3">
+                                </a>
+                                <div class="px-3">
+                                    {% for categorie in recette.categories %}
+                                        <a href="{{path('categories', {'id': categorie.id})}}" class="btn btn-perso mb-1">{{categorie.nom}}</a>
+                                    {% endfor %}
+                                </div>
+                                <div class="diffText p-2 text-right">
+                                        {{recette.difficulte.level}}
+                                        <img src="{{asset('imgs/illus/diff1.svg')}}" class="mx-1" style="height: 14px;" alt="Difficulté">
+                                    </div>
+                                <div style="" class="px-3 py-1 cardFooter">
+                                    <img src="{{asset('imgs/logos/tampon.svg')}}" style="width: 15px;" alt="logo">
+                                    <div class="p-1">Publiée le : <span class="dateFiche">{{ recette.createdAt | date('d/m/Y') }}</span></div>
+                                </div>
+                            </div>
+                        </div>  
+                    {% endfor %} 
+                </div>
+            </div>
+
+        <div class="container text-center">
+            <a href="{{path('categorie')}}" class="btn btn-danger2">Voir les catégories</a>
+        </div>
+    {% else %}
+        <div class="userNoActiv">
+            <h3 class="mt-5 mb-4">Votre compte n'est pas activé ! Allez voir dans votre boite mail pour avoir le lien d'activation du compte</h2>
+        </div>
+    {% endif %}
+    {% endblock %}

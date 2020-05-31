@@ -1,0 +1,26 @@
+/*
+font-family: 'Courier Prime', monospace;
+font-family: 'Lato', sans-serif;
+*/
+.jumboRed{
+    font-size: 20px;
+    line-height: 50px;
+    color: white;
+    font-family: 'Courier Prime', monospace;
+}
+.jumboRed > div > a{
+    color: white;
+    text-decoration: none;
+    margin: 10px;
+}
+
+.jumboRed > div{
+    margin-left: 30px;
+}
+
+@media screen and (max-width: 600px)
+{
+    .jumboRed > div > a{
+        font-size: 16px;
+    }
+}

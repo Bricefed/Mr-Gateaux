@@ -1,0 +1,144 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{recette.nom}} - MR-GATEAUX -{% endblock %}
+
+{% block body %}
+{% if not app.user or app.user.getActivationToken() == null %}
+    <div class="jumboPerso text-center p-5">
+        <h2>{{recette.nom}}</h2>
+    </div>
+    {% for alert in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{alert}}
+        </div>
+    {% endfor %}
+<div>
+    <div class="container">
+        <div class="row flex">
+            <div class="col-sm-12 col-md-12 col-xl-6">
+                <h5 class="container mt-5 text-center">Photo à <img src="{{asset('imgs/illus/360.svg')}}" alt="360°" class="mb-2 ml-1" width="40px"></h3>
+                <div class="container text-center">{{recette.img360 | raw}}</div>
+            </div>
+            <div class="col-sm-12 col-md-8 col-xl-6 m-auto">
+                <div class="post-it">
+                    <h4>Mot du chef</h4>
+                    <p class="mt-5">{{recette.note}}</p>
+                    <h6 class="mt-5 mb-4">@MR-GATEAUX</h5>
+                    <div>
+                        <img src="{{asset('imgs/logos/tampon.svg')}}" alt="logo">
+                        <span>Publiée le : <span>{{recette.createdAt | date('d/m/Y')}}</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container d-flex justify-content-around iconeSimpliste">
+        <div class="d-flex justify-content-around" style="width: 100%">
+            <div class="text-center">
+                <img src="{{asset('imgs/illus/diff2.svg')}}" width="100px" alt="Difficulter">
+                <p class="p1 mt-4">Diff.</p>
+                <p class="p2">{{recette.difficulte.level}}</p>
+            </div>
+            <div class="text-center">
+                <img src="{{asset('imgs/illus/part.svg')}}" width="100px" alt="Nombre de part">
+                <p class="p1 mt-4">Parts.</p>
+                <p class="p2">{{recette.nbPers.nb}}</p>
+            </div>
+        </div>
+        <div class="d-flex justify-content-around" style="width: 100%">
+            <div class="text-center">
+                <img src="{{asset('imgs/illus/prepa.svg')}}" width="100px" alt="Temps de préparation">
+                <p class="p1 mt-4">Prepa.</p>
+                <p class="p2">{{recette.tpsPrepa}} MIN</p>
+            </div>
+            <div class="text-center">
+                <img src="{{asset('imgs/illus/repos.svg')}}" width="100px" alt="Temps de repos">
+                <p class="p1 mt-4">Repos</p>
+                <p class="p2">{{recette.tpsRepos}} MIN</p>
+            </div>
+        </div>
+        <div class="d-flex justify-content-around" style="width: 100%">
+            <div class="text-center">
+                <img src="{{asset('imgs/illus/cuisson.svg')}}" width="100px" alt="Temps de cuisson">
+                <p class="p1 mt-4">Cuisson</p>
+                <p class="p2">{{recette.tpsCuisson}} MIN</p>
+            </div>
+            <div class="text-center">
+                <img src="{{asset('imgs/illus/congel.svg')}}" width="100px" alt="Temps de congélation">
+                <p class="p1 mt-4">Congel.</p>
+                <p class="p2">{{recette.tpsCongel}} MIN</p>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row flex">
+            <div class="col-md-5">
+                <h5 class="container mt-5 text-center">Ingredients</h3>
+                <div class="container ckEdit mt-5">
+                    {{recette.ingredients | raw}}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h5 class="container mt-5 text-center">Process</h3>
+                <div class="container ckEdit mt-5">
+                    {{recette.process | raw}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container m-5">
+        <img src="{{asset('imgs/logos/tampon.svg')}}" class="tamponRec" alt="logo" width="25px">
+    </div>
+
+    <div class="jumboRed2">
+        <div>
+            <p>Commentaires</p>
+        </div>
+    </div>
+
+    {% if not app.user %}
+        <div class="text-center bandoConex">
+            <p class="text-light mb-3">Pour avoir accès et l’espace commentaire il faut d’abord avoir un compte.</p>
+            <div>
+                <a href="{{path('inscription')}}"><span class="btn btn-light text-success mx-2">s'inscrire</span></a>
+                <a href="{{path('login')}}"><span class="btn btn-light text-primary mx-2">connexion</span></a>
+            </div>
+        </div>
+    {% endif %}
+    {% if app.user %}
+        <!-- Afficher les commentaires -->
+        <div class="fontGrey container-fluid m-auto">
+            <div class="fontWhite">
+                {% if recette.commentaire is empty %}
+                    <p class="text-center">Il n'y a aucun commentaire pour le moment...</p>
+                {% else %}
+                    {% for commentaire in recette.commentaire %}
+                        {% if commentaire.actif == false %}
+                        {% else %}
+                            <p class="pseudo mt-5">@{{commentaire.pseudo}}</p>
+                            <p class="commentaire ml-3">{{commentaire.contenu|raw}}</p>
+                            <p class="dateComment mt-5">le : {{commentaire.createdAt| date('d/m/Y')}}</p>
+                            <hr>
+                        {% endif %}
+
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <!-- Form pour ajouter un commentaire -->
+            <div class="mt-5 text-center">
+                <h6>Ajouter un Commentaire…</h5>
+                <div class="formComment mt-4">
+                    {{form(formComment)}}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% else %}
+    <div class="userNoActiv">
+        <h3 class="mt-5 mb-4">Votre compte n'est pas activé ! Allez voir dans votre boite mail pour avoir le lien d'activation du compte</h2>
+    </div>
+{% endif %}  
+{% endblock %}

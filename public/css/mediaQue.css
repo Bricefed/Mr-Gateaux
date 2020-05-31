@@ -1,0 +1,19 @@
+@media screen and (max-width: 800px)
+{
+    /* SINGLE PAGE */
+    .iconeSimpliste{
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 600px)
+{
+    /* SINGLE PAGE */
+    .post-it{
+        width: 80%;
+        margin: 0 auto 100px auto!important;
+    }
+    .tamponRec{
+        display: none;
+    }
+}

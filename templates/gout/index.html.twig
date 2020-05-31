@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Goûts - MR-GATEAUX -{% endblock %}
+
+{% block body %}
+{% if not app.user or app.user.getActivationToken() == null %}
+    <div class="jumboPerso text-center p-5">
+        <h2>Goûts</h2>
+    </div>
+    <div class="jumboRed"></div>
+
+    <div class="container mt-5">
+        <div class="row flex text-center">
+            {% for gout in gouts %}
+                <div class="col-md-6 col-lg-4 m-auto">
+                    <a href="{{path('gouts', {'id':gout.id})}}" class="btn btn-outline-danger btn-lg p-5 mb-5" style="width: 100%;">{{gout.nom}}</a>
+                </div>
+           {% endfor %}
+        </div>
+    </div>
+{% else %}
+    <div class="userNoActiv">
+        <h3 class="mt-5 mb-4">Votre compte n'est pas activé ! Allez voir dans votre boite mail pour avoir le lien d'activation du compte</h2>
+    </div>
+{% endif %}    
+{% endblock %}

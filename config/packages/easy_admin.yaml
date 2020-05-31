@@ -1,0 +1,128 @@
+easy_admin:
+    # On définit le nom de l'interface d'administration
+    site_name: 'Gestion de MR-GATEAUX'
+    # On définit l'affichage de l'utilisateur
+    user:
+        display_name: true
+        display_avatar: false
+    design:
+        # Ces lignes sont utiles pour CKEditor
+        form_theme:
+            - "@EasyAdmin/form/bootstrap_4.html.twig"
+            - "@FOSCKEditor/Form/ckeditor_widget.html.twig"
+        # Ces lignes définiront notre menu
+        menu:
+            - { label: 'Recettes' }
+            - { entity: 'Recette', label: 'Recettes', icon: 'book' }
+            - { entity: 'Categorie', label: 'Catégories', icon: 'tag' }
+            - { entity: 'Gout', label: 'Goûts', icon: 'lemon-o' }
+            - { entity: 'Difficulte', label: 'Difficultés', icon: 'bar-chart' }
+            - { entity: 'NbPers', label: 'Nombres de personnes', icon: 'users' }
+            - { entity: 'Commentaires', label: 'Commentaires', icon: 'commenting' }
+            - { label: 'Utilisateurs' }
+            - { entity: 'Users', label: 'Utilisateurs', icon: 'user' }
+    formats:
+        # Ici on définit le format des dates
+        datetime: 'd/m/Y à H:i'
+    entities:
+            Recette:
+                class: App\Entity\Recette
+                list:
+                    actions:
+                        - {name: 'edit', icon: 'pencil', label: false, css-class: 'btn btn-secondary'}
+                        - {name: 'delete', icon: 'trash', label: false, css-class: 'btn btn-danger'}  
+                    fields:
+                        - { property: 'img', label: 'Image', type: 'image', base_path: '%app.path.imgs%' }
+                        - nom
+                    sort: ['created_at', 'desc']
+                form:
+                    fields:
+                        - nom
+                        - { property: 'categories', label: 'Catégorie(s)', type: 'entity', type_options: { class: 'App\Entity\Categorie', multiple: true,by_reference: false, attr: { data-widget: 'select2' }}}
+                        - { property: 'gouts', label: 'Goût(s)', type: 'entity', type_options: { class: 'App\Entity\Gout', multiple: true,by_reference: false, attr: { data-widget: 'select2' }}}
+                        - { property: 'imageFile', type: 'vich_image', label: 'Image' }
+                        - { property: 'nbPers', label: 'Nb Pers', type: 'entity', type_options: { class: 'App\Entity\NbPers', multiple: false,by_reference: true, attr: { data-widget: 'select2' }}}
+                        - { property: 'difficulte', label: 'Difficulté', type: 'entity', type_options: { class: 'App\Entity\Difficulte', multiple: false,by_reference: true, attr: { data-widget: 'select2' }}}
+                        - img360
+                        - note
+                        - tpsPrepa
+                        - tpsRepos
+                        - tpsCongel
+                        - tpsCuisson
+                        - { property: 'process', type: 'fos_ckeditor', type_options: { config_name: 'main_config' }}
+                        - { property: 'ingredients', type: 'fos_ckeditor', type_options: { config_name: 'main_config' }}
+            Categorie:
+                class: App\Entity\Categorie
+                list:
+                    actions:
+                        - {name: 'edit', icon: 'pencil', label: false, css-class: 'btn btn-secondary'}
+                        - {name: 'delete', icon: 'trash', label: false, css-class: 'btn btn-danger'}  
+                    fields:
+                        - nom
+                form:
+                    fields:
+                        - nom
+            Gout:
+                class: App\Entity\Gout
+                list:
+                    actions:
+                        - {name: 'edit', icon: 'pencil', label: false, css-class: 'btn btn-secondary'}
+                        - {name: 'delete', icon: 'trash', label: false, css-class: 'btn btn-danger'}  
+                    fields:
+                        - nom
+                form:
+                    fields:
+                        - nom
+            NbPers:
+                class: App\Entity\NbPers
+                list:
+                    actions:
+                        - {name: 'edit', icon: 'pencil', label: false, css-class: 'btn btn-secondary'}
+                        - {name: 'delete', icon: 'trash', label: false, css-class: 'btn btn-danger'}  
+                    fields:
+                        - nb
+                form:
+                    fields:
+                        - nb
+            Difficulte:
+                class: App\Entity\Difficulte
+                list:
+                    actions:
+                        - {name: 'edit', icon: 'pencil', label: false, css-class: 'btn btn-secondary'}
+                        - {name: 'delete', icon: 'trash', label: false, css-class: 'btn btn-danger'}  
+                    fields:
+                        - level
+                form:
+                    fields:
+                        - level
+            Commentaires:
+                class: App\Entity\Commentaires
+                list:
+                    actions:
+                        - {name: 'edit', icon: 'pencil', label: false, css-class: 'btn btn-secondary'}
+                        - {name: 'delete', icon: 'trash', label: false, css-class: 'btn btn-danger'}  
+                    fields:
+                        - actif
+                        - pseudo
+                        - contenu
+                        - recette
+                    sort: ['created_at', 'desc']
+                form:
+                    fields:
+                        - actif
+                        - pseudo
+                        - contenu
+            Users:
+                class: App\Entity\Users
+                label: 'Utilisateurs'
+                list:
+                    actions:
+                        - {name: 'edit', icon: 'pencil', label: false, css-class: 'btn btn-secondary'}
+                        - {name: 'delete', icon: 'trash', label: false, css-class: 'btn btn-danger'}  
+                    fields:
+                        - email
+                        - { property: 'roles', label: 'Rôles', type: json_array}
+                form:
+                    fields:
+                        - email
+                        - { property: 'roles', label: 'Rôles', type: choice, type_options: {expanded: true, multiple: true, choices: {'Utilisateur':'ROLE_USER', 'Administrateur':'ROLE_ADMIN'}}}

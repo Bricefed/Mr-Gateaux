@@ -1,0 +1,51 @@
+/*
+font-family: 'Courier Prime', monospace;
+font-family: 'Lato', sans-serif;
+*/
+.fontGrey{
+    margin-top: -10px;
+    background-color: #F2F2F2;
+    padding: 80px;
+}
+.fontWhite{
+    background-color: white;
+    padding: 10px 50px;
+    border-radius: 10px;
+}
+.fontWhite .pseudo{
+    color: #AF4B4F;
+    font-family: 'Courier Prime', monospace;
+    text-transform: uppercase;
+}
+.fontWhite .commentaire{
+    color: #909090;
+    font-family: 'Lato', sans-serif;
+}
+.fontWhite .dateComment{
+    color: #CD9193;
+    text-align: right;
+}
+
+.fontGrey > div > h6{
+    color: #AF4B4F;
+    text-transform: uppercase;
+    font-family: 'Courier Prime', monospace;
+    font-size: 1.8em;
+}
+.form-check{
+    text-align: left;
+    color: #909090;
+}
+
+#commentaire_form_Ajouter{
+    text-transform: uppercase;
+    margin: 0 auto;
+    background-color: white;
+    color: #AF4B4F;
+    font-family: 'Courier Prime', monospace;
+    border: none;
+    font-size: 1.2em;
+}
+.textAreaComment{
+    min-height: 150px;
+}
